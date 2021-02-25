@@ -20,7 +20,7 @@ class SpeechBubble: UIView {
     @IBInspectable var peakHeight: CGFloat = 10 { didSet { setNeedsDisplay() } }
     @IBInspectable var peakOffset: CGFloat = 30 { didSet { setNeedsDisplay() } }
     
-    var selectedPeakSide: PeakSide = .Right
+    var selectedPeakSide: PeakSide = .Left
     public enum PeakSide: Int {
             case Top
             case Left
@@ -83,7 +83,7 @@ class SpeechBubble: UIView {
         path.addQuadCurve(to: CGPoint(x: rect.minX, y: rect.maxY - cornerRadius), controlPoint: CGPoint(x: rect.minX, y: rect.maxY))
         
         if selectedPeakSide == .Left {
-            let x = rect.maxX
+            let x = rect.minX
             let y = rect.midY
             path.addLine(to: CGPoint(x: x, y: (y + peakOffset) + peakWidth))
             path.addLine(to: CGPoint(x: x - h, y: (y + peakOffset)))
