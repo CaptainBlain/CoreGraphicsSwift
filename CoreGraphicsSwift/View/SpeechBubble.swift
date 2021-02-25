@@ -16,6 +16,7 @@ class SpeechBubble: UIView {
     @IBInspectable var strokeColor: UIColor = #colorLiteral(red: 0.643830955, green: 0.861299932, blue: 0.9850798249, alpha: 1) { didSet { setNeedsDisplay() } }
     @IBInspectable var fillColor: UIColor = #colorLiteral(red: 0.643830955, green: 0.861299932, blue: 0.9850798249, alpha: 1) { didSet { setNeedsDisplay() } }
     
+    /// - Parameter peakWidth: The width of the peak on the bubble
     @IBInspectable var peakWidth: CGFloat  = 10 { didSet { setNeedsDisplay() } }
     @IBInspectable var peakHeight: CGFloat = 10 { didSet { setNeedsDisplay() } }
     @IBInspectable var peakOffset: CGFloat = 30 { didSet { setNeedsDisplay() } }
@@ -26,8 +27,8 @@ class SpeechBubble: UIView {
     var textView: UITextView!
     var textStorage: NSTextStorage!
     
-    private var selectedPeakSide: PeakSide = .Left
-    private enum PeakSide: Int {
+    var peakSide: PeakSide = .Left
+    enum PeakSide: Int {
             case Top
             case Left
             case Right
@@ -59,7 +60,7 @@ class SpeechBubble: UIView {
         path.addQuadCurve(to: CGPoint(x: rect.minX + cornerRadius, y: rect.minY),
                           controlPoint: CGPoint(x: rect.minX, y: rect.minY))
         
-        if selectedPeakSide == .Top {
+        if peakSide == .Top {
             let x = rect.midX
             let y = rect.minY
             path.addLine(to: CGPoint(x: (x + peakOffset) - peakWidth, y: y))
@@ -72,7 +73,7 @@ class SpeechBubble: UIView {
         path.addQuadCurve(to: CGPoint(x: rect.maxX, y: rect.minY + cornerRadius),
                           controlPoint: CGPoint(x: rect.maxX, y: rect.minY))
         
-        if selectedPeakSide == .Right {
+        if peakSide == .Right {
             let x = rect.maxX
             let y = rect.midY
             path.addLine(to: CGPoint(x: x, y: (y + peakOffset) - peakWidth))
@@ -85,7 +86,7 @@ class SpeechBubble: UIView {
         path.addQuadCurve(to: CGPoint(x: rect.maxX - cornerRadius, y: rect.maxY),
                           controlPoint: CGPoint(x: rect.maxX, y: rect.maxY))
         
-        if selectedPeakSide == .Bottom {
+        if peakSide == .Bottom {
             let x = rect.minX
             let y = rect.maxY
             path.addLine(to: CGPoint(x: (x + peakOffset) + peakWidth, y: y))
@@ -97,7 +98,7 @@ class SpeechBubble: UIView {
         path.addLine(to: CGPoint(x: rect.minX + cornerRadius, y: rect.maxY))
         path.addQuadCurve(to: CGPoint(x: rect.minX, y: rect.maxY - cornerRadius), controlPoint: CGPoint(x: rect.minX, y: rect.maxY))
         
-        if selectedPeakSide == .Left {
+        if peakSide == .Left {
             let x = rect.minX
             let y = rect.midY
             path.addLine(to: CGPoint(x: x, y: (y + peakOffset) + peakWidth))
@@ -120,14 +121,14 @@ class SpeechBubble: UIView {
     
     func drawTitle(_ rect: CGRect) {
 
-        let attrs = getAttributesDictionary(ForFont: helvetica(size: 18.0), color: #colorLiteral(red: 0.3568627451, green: 0.4235294118, blue: 0.4862745098, alpha: 1), andTextAlignment: .left)
+        let attrs = getAttributesDictionary(ForFont: UIFont.helvetica(size: 18.0), color: #colorLiteral(red: 0.3568627451, green: 0.4235294118, blue: 0.4862745098, alpha: 1), andTextAlignment: .left)
         let title = "Tip"
         title.draw(in: rect.insetBy(dx: 10, dy: 10), withAttributes: attrs)
     }
     
     func drawTextView(_ rect: CGRect) {
         
-        let attrs = getAttributesDictionary(ForFont: helveticaThin(size: 16.0), color: #colorLiteral(red: 0.3568627451, green: 0.4235294118, blue: 0.4862745098, alpha: 1))
+        let attrs = getAttributesDictionary(ForFont: UIFont.helveticaThin(size: 16.0), color: #colorLiteral(red: 0.3568627451, green: 0.4235294118, blue: 0.4862745098, alpha: 1))
 
         //Instantiate an instance of your custom text storage and initialize it with an attributed string holding the content of the note.
         let attrString = NSMutableAttributedString(string: text, attributes: attrs)
@@ -136,7 +137,7 @@ class SpeechBubble: UIView {
         if let substringRange = text.range(of: highlightText) {
             //Get the range
             let nsRange = NSRange(substringRange, in: text)
-            let ast = NSMutableAttributedString(string: highlightText, attributes: getAttributesDictionary(ForFont: helvetica(size: 16.0), color: #colorLiteral(red: 0.3568627451, green: 0.4235294118, blue: 0.4862745098, alpha: 1)))
+            let ast = NSMutableAttributedString(string: highlightText, attributes: getAttributesDictionary(ForFont: UIFont.helvetica(size: 16.0), color: #colorLiteral(red: 0.3568627451, green: 0.4235294118, blue: 0.4862745098, alpha: 1)))
             //Updte the string
             attrString.replaceCharacters(in: nsRange, with: ast)
         }
@@ -173,14 +174,15 @@ class SpeechBubble: UIView {
         #colorLiteral(red: 0.2274509804, green: 0.6196078431, blue: 0.8666666667, alpha: 1).setFill()
         path.fill()
         
-        let attrs = getAttributesDictionary(ForFont: helvetica(size: 16.0), color: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), andTextAlignment: .center)
+        let attrs = getAttributesDictionary(ForFont: UIFont.helvetica(size: 16.0), color: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), andTextAlignment: .center)
         let title = "Got it"
-        let titleSize = title.getStringSize(for: helvetica(size: 16.0), andWidth: size.width)
+        let titleSize = title.getStringSize(for: UIFont.helvetica(size: 16.0), andWidth: size.width)
         title.draw(in: buttonRect.insetBy(dx: 0, dy: size.height/2 - titleSize.height/2), withAttributes: attrs)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        self.backgroundColor = .clear
         if textView != nil {
             //Add a bounding area so we can fit the peak in the view
             let rect = bounds.insetBy(dx: (peakHeight + lineWidth/2), dy: (peakHeight + lineWidth/2))
@@ -196,14 +198,7 @@ class SpeechBubble: UIView {
         return UIBezierPath(rect: buttonRect)
     }
     
-    func helvetica(size: CGFloat) -> UIFont {
-        
-        return UIFont(name: "HelveticaNeue-Bold", size: size)!
-    }
-    func helveticaThin(size: CGFloat) -> UIFont {
-        
-        return UIFont(name: "HelveticaNeue-Thin", size: size)!
-    }
+   
     
     func getAttributesDictionary(ForFont font: UIFont, color: UIColor, andTextAlignment textAlignment: NSTextAlignment = .left) -> Dictionary<NSAttributedString.Key, Any> {
         
@@ -215,29 +210,4 @@ class SpeechBubble: UIView {
     }
 }
 
-extension String {
-    
-    func getStringSize(for font: UIFont, andWidth width: CGFloat) -> CGSize {
-        
-        // calculate text height
-        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = self.boundingRect(with: constraintRect,
-                                            options: .usesLineFragmentOrigin,
-                                            attributes: [
-                                                NSAttributedString.Key.font: font],
-                                            context: nil)
-        let width = ceil(boundingBox.width)
-        let height = ceil(boundingBox.height)
-        
-        return CGSize(width: width, height: height)
-    }
-    
 
-}
-
-extension NSRange {
-    public init(_ range:Range<String.Index>) {
-        self.init(location: range.lowerBound.encodedOffset,
-              length: range.upperBound.encodedOffset -
-                      range.lowerBound.encodedOffset) }
-    }
