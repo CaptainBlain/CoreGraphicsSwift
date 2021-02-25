@@ -12,6 +12,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let speech = SpeechBubble(frame: CGRect(x: 50, y: 50, width: 220, height: 140))
+        view.addSubview(speech)
     }
 
 

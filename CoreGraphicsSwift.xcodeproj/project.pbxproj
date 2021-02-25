@@ -15,6 +15,8 @@
 		6C2B396B25E7BC10006AF041 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C2B396925E7BC10006AF041 /* LaunchScreen.storyboard */; };
 		6C2B397425E7BC26006AF041 /* PushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B397325E7BC26006AF041 /* PushButton.swift */; };
 		6C2B397825E7BEDE006AF041 /* SpeechBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B397725E7BEDE006AF041 /* SpeechBubble.swift */; };
+		6C679F8E25E7E6F9006C4530 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C679F8D25E7E6F9006C4530 /* BubbleView.swift */; };
+		6C679F9425E7F903006C4530 /* SyntaxHighlightTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C679F9325E7F903006C4530 /* SyntaxHighlightTextStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		6C2B396C25E7BC10006AF041 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C2B397325E7BC26006AF041 /* PushButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButton.swift; sourceTree = "<group>"; };
 		6C2B397725E7BEDE006AF041 /* SpeechBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechBubble.swift; sourceTree = "<group>"; };
+		6C679F8D25E7E6F9006C4530 /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
+		6C679F9325E7F903006C4530 /* SyntaxHighlightTextStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxHighlightTextStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +72,9 @@
 				6C2B396925E7BC10006AF041 /* LaunchScreen.storyboard */,
 				6C2B396C25E7BC10006AF041 /* Info.plist */,
 				6C2B397325E7BC26006AF041 /* PushButton.swift */,
+				6C679F8D25E7E6F9006C4530 /* BubbleView.swift */,
 				6C2B397725E7BEDE006AF041 /* SpeechBubble.swift */,
+				6C679F9325E7F903006C4530 /* SyntaxHighlightTextStorage.swift */,
 			);
 			path = CoreGraphicsSwift;
 			sourceTree = "<group>";
@@ -143,7 +149,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C679F8E25E7E6F9006C4530 /* BubbleView.swift in Sources */,
 				6C2B396325E7BC0F006AF041 /* ViewController.swift in Sources */,
+				6C679F9425E7F903006C4530 /* SyntaxHighlightTextStorage.swift in Sources */,
 				6C2B397825E7BEDE006AF041 /* SpeechBubble.swift in Sources */,
 				6C2B395F25E7BC0F006AF041 /* AppDelegate.swift in Sources */,
 				6C2B396125E7BC0F006AF041 /* SceneDelegate.swift in Sources */,
