@@ -11,19 +11,16 @@ import UIKit
 class RecordCircle: UIView {
     
     @IBInspectable var outerColor: UIColor = #colorLiteral(red: 0.3450980392, green: 0.2509803922, blue: 0.7333333333, alpha: 1)
-    @IBInspectable var middleColor: UIColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
     @IBInspectable var innerColor: UIColor = #colorLiteral(red: 0.3450980392, green: 0.2509803922, blue: 0.7333333333, alpha: 1)
     
     override func draw(_ rect: CGRect) {
-        let path = UIBezierPath(ovalIn: rect.insetBy(dx: 2, dy: 2))
-        middleColor.setFill()
-        path.fill()
         
+        let outside = UIBezierPath(arcCenter: CGPoint(x: bounds.width / 2, y: bounds.height / 2), radius: (bounds.height/2) - 3, startAngle: CGFloat(0), endAngle: CGFloat.pi * 2, clockwise: true)
+        outside.lineWidth = 3
         outerColor.setStroke()
-        path.lineWidth = 3
-        path.stroke()
+        outside.stroke()
         
-        let inside = UIBezierPath(ovalIn: rect.insetBy(dx: 20, dy: 20))
+        let inside = UIBezierPath(arcCenter: CGPoint(x: bounds.width / 2, y: bounds.height / 2), radius: 1, startAngle: CGFloat(0), endAngle: CGFloat.pi * 2, clockwise: true)
         innerColor.setFill()
         inside.fill()
     }
