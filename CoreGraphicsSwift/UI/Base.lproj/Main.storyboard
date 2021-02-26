@@ -63,20 +63,30 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="highlightText" value="profile"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SHu-yv-8dU" customClass="RecordCircle" customModule="CoreGraphicsSwift" customModuleProvider="target">
+                                <rect key="frame" x="87" y="114" width="124" height="116"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="30G-uq-Cjt"/>
+                                    <constraint firstAttribute="width" constant="240" id="fRW-Tp-pxB"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Z7s-JC-iQV" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-100" id="MNC-e1-4Ml"/>
+                            <constraint firstItem="SHu-yv-8dU" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="VJ7-2K-43n"/>
                             <constraint firstItem="Z7s-JC-iQV" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Vgd-F2-qbP"/>
                             <constraint firstItem="2od-X0-y0J" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="100" id="f8a-Ij-XiR"/>
+                            <constraint firstItem="Z7s-JC-iQV" firstAttribute="top" secondItem="SHu-yv-8dU" secondAttribute="bottom" constant="41" id="j5d-wT-QHm"/>
                             <constraint firstItem="2od-X0-y0J" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="yAa-mJ-vzM"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-278" y="108"/>
+            <point key="canvasLocation" x="-278.26086956521743" y="107.8125"/>
         </scene>
     </scenes>
     <designables>

@@ -28,9 +28,6 @@ class BubbleView: UIView {
         case Bottom
     }
     
-    
-    
-    
     override func draw(_ rectangle: CGRect) {
         
         //Add a bounding area so we can fit the peak in the view
